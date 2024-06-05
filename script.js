@@ -17,7 +17,7 @@
 const wrapperDiv = document.querySelector(".wrapper");
 const bookArray = [];
 
-function book(title, author, pages, read, thiss) {
+function book(title, author, pages, read, thiss = this) {
   (thiss.title = title),
     (thiss.author = author),
     (thiss.pages = pages),
@@ -27,9 +27,8 @@ function book(title, author, pages, read, thiss) {
     });
 }
 
-// bookArray.push(
-//   book("A Brief History Of Time", "Stephen Hawking", 256, "not read")
-// );
-// bookArray.push(book("The Shining", "Stephen King", 505, "read"));
-// bookArray.push(book("Atomic Habits", "James Clear", 320, "reading"));
-
+bookArray.push(
+  book("A Brief History Of Time", "Stephen Hawking", 256, "not read")
+);
+bookArray.push(book("The Shining", "Stephen King", 505, "read"));
+bookArray.push(book("Atomic Habits", "James Clear", 320, "reading"));
