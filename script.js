@@ -33,26 +33,3 @@ function book(title, author, pages, read, thiss) {
 // bookArray.push(book("The Shining", "Stephen King", 505, "read"));
 // bookArray.push(book("Atomic Habits", "James Clear", 320, "reading"));
 
-function addBookToLibrary() {
-  let title = prompt("Title of the book: ");
-  let author = prompt(`Author of ${title}: `);
-  let pages = prompt(`Number of pages in ${title}: `);
-  let read = prompt(`Have you read ${title} yet: `);
-
-  let currBook = new book(title, author, pages, read, this);
-
-  bookArray.push(currBook);
-}
-
-function addToDisplay(arr) {
-  arr.forEach((book) => {
-    const divDisplay = document.createElement("div");
-    divDisplay.setAttribute("id", "bookDivs");
-    divDisplay.textContent = `Title: ${book.title}, Author: ${book.author}, Pages: ${book.pages}, Status: ${book.read}`;
-    wrapperDiv.appendChild(divDisplay);
-  });
-}
-
-addBookToLibrary();
-console.log(bookArray);
-addToDisplay(bookArray);
