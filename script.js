@@ -8,13 +8,9 @@ function construtorBook(title, author, pages, statuss){
   this.info = `Book: ${title}, Author: ${author}, Pages: ${pages}, Status: ${statuss}`;
 }
 
-function addBookToLibrary(){
- let title = prompt("Enter the title of the book: ");
- let author = prompt(`Who is the author of ${title}?`);
- let pages = prompt(`How many pages are there in ${title}?`);
- let status = prompt(`Have you read ${title}?`)
+function addBookToLibrary(title, author, pages, statuss){
 
-let book = new construtorBook(title, author, pages, status);
+let book = new construtorBook(title, author, pages, statuss);
 
 bookArray.push(book);
 }
@@ -33,10 +29,27 @@ function addToDisplay(){
   })
 }
 
+
+const dialog = document.querySelector("dialog");
+const submitBtn = document.querySelector("#submit-btn");
+
 const btn = document.querySelector("#new-book")
 btn.addEventListener("click", () =>{
-  addBookToLibrary();
+  dialog.showModal();
+})
+submitBtn.addEventListener("click", (book) => {
+  let title = document.querySelector("#title");
+  let auhtor = document.querySelector("#author");
+  let pages = document.querySelector("#pages");
+  let status = document.querySelector("#status");
+
+  console.log(title.value, auhtor.value, pages.value, status.value);
+  addBookToLibrary(title.value, auhtor.value, pages.value, status.value);
   wrapperDiv.innerHTML = "";
   addToDisplay();
+  title.value = "";
+  auhtor.value = "";
+  pages.value = "";
+  status.value = "";
+  dialog.close();
 })
-

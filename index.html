@@ -19,6 +19,31 @@
       <p id="statuss">Status: Read</p>
     </div> -->
   </div>
+  <dialog>
+    <form action="">
+      <fieldset>
+        <table>
+          <tr>
+            <td><label for="title">Title: </label></td>
+            <td><input type="text" name="title" id="title" required placeholder="Book's Title"></td>
+          </tr>
+          <tr>
+            <td><label for="author">Auhtor: </label></td>
+            <td><input type="text" name="author" id="author" required placeholder="Book's Author"></td>
+          </tr>
+          <tr>
+            <td><label for="pages">Pages: </label></td>
+            <td><input type="number" name="pages" id="pages" required placeholder="Number fo pages"></td>
+          </tr>
+          <tr>
+            <td><label for="status">Status: </label></td>
+            <td><input type="text" name="status" id="status" required placeholder="Have you read it?"></td>
+          </tr>
+        </table>
+      </fieldset>
+      <button id="submit-btn" autofocus formmethod="dialog">Submit</button>
+    </form>
+  </dialog>
 </body>
 
 </html>

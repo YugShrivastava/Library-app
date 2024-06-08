@@ -35,4 +35,14 @@ body{
   align-content: space-around;
   padding: 50px;
 }
-
+dialog{
+  position: absolute;
+  
+}
+form{
+  padding: 10px;
+  line-height: 20px;
+}
+::backdrop{
+  opacity: 0.69;
+}
