@@ -44,3 +44,5 @@ function addToDisplay(title, author, pages, status, index){
 }
 
 // addBookToLibrary();
+const newBookBtn = document.querySelector("#new-book");
+newBookBtn.addEventListener("click", () => addBookToLibrary());

@@ -8,3 +8,11 @@ button{
   background-color: rgb(72, 70, 70);
   color: white;
 }
+#new-book{
+  position: fixed;
+  top: 1px;
+  left: 47%;
+  padding: 10px;
+  border-radius: 12px;
+  font-size: 18px;
+}
