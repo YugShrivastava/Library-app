@@ -47,9 +47,6 @@ submitBtn.addEventListener("click", (book) => {
   addBookToLibrary(title.value, auhtor.value, pages.value, status.value);
   wrapperDiv.innerHTML = "";
   addToDisplay();
-  title.value = "";
-  auhtor.value = "";
-  pages.value = "";
-  status.value = "";
   dialog.close();
+  document.querySelector("form").reset();
 })
