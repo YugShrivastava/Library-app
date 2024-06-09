@@ -46,3 +46,7 @@ form{
 ::backdrop{
   opacity: 0.69;
 }
+#delete-btn{
+  padding: 10px;
+  font-size: 18px;
+}
