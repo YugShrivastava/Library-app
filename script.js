@@ -20,18 +20,21 @@ const wrapperDiv = document.querySelector(".wrapper");
 
 function addToDisplay() {
   bookArray.forEach((book) => {
-    const displayBook = document.createElement("div");
-    displayBook.setAttribute("id", "displayBook");
-    displayBook.innerHTML = `<div id="${title}"><p id="title">Title: ${book.title}</p><p id="author">Author: ${book.author}</p><p id="pages">Pages: ${book.pages}</p><p id="statuss">Status: ${book.statuss}</p><br><button id="delete-btn">Delete</button></div>`;
-    wrapperDiv.appendChild(displayBook);
+    if (bookArray.length) {
+      const displayBook = document.createElement("div");
+      displayBook.setAttribute("id", "displayBook");
+      displayBook.innerHTML = `<div id="${title}"><p id="title">Title: ${book.title}</p><p id="author">Author: ${book.author}</p><p id="pages">Pages: ${book.pages}</p><p id="statuss">Status: ${book.statuss}</p><br><button id="${title}">Delete</button></div>`;
+      wrapperDiv.appendChild(displayBook);
 
-    const deleteButton = document.querySelector("#delete-btn");
-    deleteButton.addEventListener("click", (book) => {
-      console.log(bookArray);
-      bookArray.splice(bookArray.indexOf(book), 1);
-      wrapperDiv.removeChild(displayBook);
-      console.log(bookArray);
-    });
+      const deleteButton = document.getElementById(title);
+      deleteButton.addEventListener("click", (book) => {
+        console.log(bookArray);
+        bookArray.splice(bookArray.indexOf(book), 1);
+        console.log(bookArray);
+        addToDisplay();
+      });
+    }
+    else return;
   });
 }
 
@@ -61,3 +64,5 @@ submitBtn.addEventListener("click", () => {
 
   dialog.close();
 });
+
+
