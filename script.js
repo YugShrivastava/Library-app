@@ -1,68 +1,77 @@
-const bookArray = [];
+//https://rfod.github.io/Library/
 
-function construtorBook(title, author, pages, statuss) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.statuss = statuss;
-  this.info = `Book: ${title}, Author: ${author}, Pages: ${pages}, Status: ${statuss}`;
+const libraryArray = [];
+const wrapperDiv = document.querySelector(".wrapperDiv");
+let deleteIndex;
+let indexOfBook = 1;
+
+function libraryConstructor() {
+  this.title = "";
+  this.author = "";
+  this.pages = "";
+  this.status = "";
+  this.index = "";
 }
 
-function addBookToLibrary(title, author, pages, statuss) {
-  let book = new construtorBook(title, author, pages, statuss);
-  bookArray.push(book);
+function addBookToLibrary() {
+  const book = new libraryConstructor();
+  book.title = prompt("Title: ");
+  book.author = prompt("Author: ");
+  book.pages = prompt("Pages: ");
+  book.status = prompt("Status: ");
+  book.index = indexOfBook;
+  indexOfBook++;
+
+  appendToLibrary(book);
+}
+
+function appendToLibrary(object) {
+  libraryArray.push(object);
+
+  addToDisplay(
+    object.title,
+    object.author,
+    object.pages,
+    object.status,
+    object.index
+  );
+}
+
+function addToDisplay(title, author, pages, status, index) {
+  const bookDiv = document.createElement("div");
+  bookDiv.setAttribute("id", index);
+  bookDiv.setAttribute("class", "book");
+  bookDiv.innerHTML = `
+     <p id="title"><pre>Title:  ${title}</pre></p>
+     <p id="author"><pre>Author: ${author}</pre></p>
+     <p id="pages"><pre>Pages:  ${pages}</pre></p>
+     <p id="status"><pre>Status: ${status}</pre></p>
+     <button id="${index}">Delete</button>`;
+
+  wrapperDiv.appendChild(bookDiv);
+  deleteButton = document.getElementById(index);
+  deleteButton.addEventListener("click", () => removeObject(index));
 }
 
 // addBookToLibrary();
-// addBookToLibrary();
+const newBookBtn = document.querySelector("#new-book");
+newBookBtn.addEventListener("click", () => addBookToLibrary());
 
-const wrapperDiv = document.querySelector(".wrapper");
+function removeObject(id) {
+  // console.log("id = ", id);
 
-function addToDisplay() {
-  bookArray.forEach((book) => {
-    if (bookArray.length) {
-      const displayBook = document.createElement("div");
-      displayBook.setAttribute("id", "displayBook");
-      displayBook.innerHTML = `<div id="${title}"><p id="title">Title: ${book.title}</p><p id="author">Author: ${book.author}</p><p id="pages">Pages: ${book.pages}</p><p id="statuss">Status: ${book.statuss}</p><br><button id="${title}">Delete</button></div>`;
-      wrapperDiv.appendChild(displayBook);
-
-      const deleteButton = document.getElementById(title);
-      deleteButton.addEventListener("click", (book) => {
-        console.log(bookArray);
-        bookArray.splice(bookArray.indexOf(book), 1);
-        console.log(bookArray);
-        addToDisplay();
-      });
-    }
-    else return;
+  libraryArray.forEach((obj) => {
+    if (obj.index == id) libraryArray.splice(libraryArray.indexOf(obj), 1);
+    // console.log(obj.index, id)
+    // console.log(libraryArray);
+    wrapperDiv.innerHTML = "";
+    addAllBooksToDisplay();
   });
 }
 
-const dialog = document.querySelector("dialog");
-const submitBtn = document.querySelector("#submit-btn");
-
-let title = document.getElementById("title");
-let author = document.getElementById("author");
-let pages = document.getElementById("pages");
-let statuss = document.getElementById("status");
-
-const btn = document.querySelector("#new-book");
-btn.addEventListener("click", () => {
-  dialog.showModal();
-});
-
-submitBtn.addEventListener("click", () => {
-  addBookToLibrary(title.value, author.value, pages.value, statuss.value);
-  wrapperDiv.innerHTML = "";
-
-  title.value = "";
-  author.value = "";
-  pages.value = "";
-  statuss.value = "";
-
-  addToDisplay();
-
-  dialog.close();
-});
-
-
+function addAllBooksToDisplay() {
+  libraryArray.forEach((book) => {
+    addToDisplay(book.title, book.author, book.pages, book.status, book.index);
+    // console.log(book.index);
+  });
+}
