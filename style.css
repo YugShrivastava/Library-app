@@ -11,8 +11,15 @@ button{
 #new-book{
   position: fixed;
   top: 1px;
-  left: 47%;
+  left: 44%;
   padding: 10px;
   border-radius: 12px;
   font-size: 18px;
+}
+.wrapperDiv{
+  display: flex;
+  gap: 10px;
+  margin: 100px 35% 50px 35%;
+  font-size: 18px;
+  flex-wrap: wrap;
 }
