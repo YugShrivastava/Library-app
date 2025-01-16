@@ -4,15 +4,17 @@ function Book(name, author, pages, isRead) {
     this.title = name;
     this.author = author;
     this.pages = pages;
-    this.status = () => {
-        if (isRead) return "Read";
+    this.isRead = isRead;
+}
+
+Book.prototype.status = function (){
+    if (this.isRead) return "Read";
         else return "Not Read Yet";
-    };
 }
 
 function addBookToLibrary(bookObj) {
     myLibrary.push(bookObj);
-    console.log(myLibrary);
+    // console.log(myLibrary);
 }
 
 const TheHobbit = new Book("The Hobbit", "J.R.D Tata", 295, false);
@@ -21,14 +23,17 @@ const HarryPotter = new Book("HarryPotter", "J.K. Rowling", 369, true);
 addBookToLibrary(TheHobbit);
 addBookToLibrary(HarryPotter);
 
-function makeBookCard(bookObj) {
+function makeBookCard(bookObj, index) {
     const cards = document.createElement("div");
     cards.classList.add("cards");
     cards.innerHTML = `<h3>${bookObj.title}</h3>
         <p>Author: <span>${bookObj.author}</span></p>
         <p>Pages: <span>${bookObj.pages}</span></p>
         <p>Status: <span>${bookObj.status()}</span></p>
-        <button class="delete" data-pages="${bookObj.pages}">Delete</button>`;
+        <button class="toggle-status" data-index=${index}>Toggle Status</button>
+        <button class="delete" data-index="${index}">Delete</button>`
+        bookObj.index = index;
+
     return cards;
 }
 
@@ -36,19 +41,34 @@ const body = document.querySelector('#body');
 
 function displayLibrary() {
     body.innerHTML = '';
-    myLibrary.forEach(book => {
-        card = makeBookCard(book);
+    myLibrary.forEach((book, index) => {
+        card = makeBookCard(book, index);
         body.appendChild(card);
     });
     document.querySelectorAll('.delete').forEach(element => {
         element.addEventListener('click', deleteBook);
     });
+    document.querySelectorAll('.toggle-status').forEach(element => {
+        element.addEventListener('click', toggleStatus);
+    })
 }
 
 displayLibrary();
 
 const dialog = document.querySelector('dialog');
 dialog.close();
+
+function toggleStatus(e){
+    bookObj = myLibrary.find(currObj => currObj.index == e.target.dataset.index);
+
+    // if(isRead === true) bookObj.status = 'Not Read Yet';
+    // else bookObj.status = 'Read';
+    // console.log(bookObj.isRead);
+    bookObj.isRead = !bookObj.isRead;
+    // console.log(bookObj.isRead);
+     
+    displayLibrary();
+}
 
 function subPreDef(e){
     e.preventDefault();
@@ -58,7 +78,7 @@ function subPreDef(e){
     const status = document.getElementById('status');
     const isRead = status.value === 'true';
     const book = new Book(title.value, author.value, pages.value, isRead);
-    console.log(book);
+    // console.log(book);
     addBookToLibrary(book);
     displayLibrary();
     dialogReset();   
@@ -78,15 +98,15 @@ function dialogReset(){
 }
 
 function newBook(){
-        dialog.showModal();
+    dialog.showModal();
 }
 document.querySelector('#button').addEventListener('click', newBook);
 document.querySelector('#submit').addEventListener('click', subPreDef, false);
-body.addEventListener('keydown', newBook);
+// body.addEventListener('keydown', newBook);
 
 function deleteBook(e){
-    console.log(e.target.dataset.pages);
-    myLibrary = myLibrary.filter(book => book.pages != e.target.dataset.pages);
+    // console.log(e.target.dataset.index);
+    myLibrary = myLibrary.filter(book => book.index != e.target.dataset.index);
     displayLibrary();
 }
 
