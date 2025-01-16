@@ -1,25 +1,57 @@
-*{
-  margin: 0px;
-  background-color: rgb(33, 33, 33);
-  color: white;
+body{
+    padding: 0px;
+    margin: 0px;
+    background-color: #333333;
+    color: white;
+    padding: 25px 50px;
+    margin: 0px;
+}
+#body{
+    display: flex;
+    gap: 75px;
+    flex-wrap: wrap;
 }
 
-button{
-  background-color: rgb(72, 70, 70);
-  color: white;
+.cards{
+    height: 300px;
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    border:1px solid #f3f3f3;
+    border-radius: 5px;
 }
-#new-book{
-  position: fixed;
-  top: 1px;
-  left: 44%;
-  padding: 10px;
-  border-radius: 12px;
-  font-size: 18px;
+h3{
+    font-size: 1.7rem;
+    margin-bottom: 10px;
 }
-.wrapperDiv{
-  display: flex;
-  gap: 10px;
-  margin: 100px 35% 50px 35%;
-  font-size: 18px;
-  flex-wrap: wrap;
+p{
+    font-size: 1.2rem;
+    margin-bottom: 5px;;
+}
+dialog{
+    color: white;
+    background-color: #666666;
+    width: 250px;
+}
+form{
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+}
+input{
+    background-color: #666666;
+    border:1px solid #f3f3f3;
+    color: #f3f3f3
+}
+form>p{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+form>div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
